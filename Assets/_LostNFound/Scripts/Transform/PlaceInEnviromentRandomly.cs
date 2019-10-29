@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PlaceInEnviroment : MonoBehaviour
+public class PlaceInEnviromentRandomly : MonoBehaviour
 {
     public float min, max;
     public float spaceBetweenPoints = .01f;
@@ -24,7 +24,7 @@ public class PlaceInEnviroment : MonoBehaviour
     {
         Vector3 tempPosition = RandomPositionWithinRange(min, max, Camera.main.transform);
 
-        while (!IsRandomPoint(tempPosition, spaceBetweenPoints))
+        while (!IsNotColliding(tempPosition, spaceBetweenPoints))
         {
             tempPosition = RandomPositionWithinRange(min, max, Camera.main.transform);
             yield return new WaitForEndOfFrame(); 
@@ -61,10 +61,11 @@ public class PlaceInEnviroment : MonoBehaviour
         return Random.Range(0, 2) * 2 - 1;
     }
 
-    public bool IsRandomPoint(Vector3 positionPoint, float spaceBetweenPoints)
+
+    public bool IsNotColliding(Vector3 positionPoint, float spaceBetweenPoints)
     {
         Collider[] hitColliders = Physics.OverlapSphere(positionPoint, spaceBetweenPoints);
-        
+
         if (hitColliders.Length == 0)
         {
             return true;
