@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 48122935}
   - component: {fileID: 48122934}
   m_Layer: 0
-  m_Name: Floor (4)
+  m_Name: Boundry - Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 224528537}
   - component: {fileID: 224528536}
   m_Layer: 0
-  m_Name: Floor (3)
+  m_Name: Boundry - Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 415509985}
   - component: {fileID: 415509984}
   m_Layer: 0
-  m_Name: Floor (1)
+  m_Name: Boundry - Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,7 +1069,7 @@ GameObject:
   - component: {fileID: 588167833}
   - component: {fileID: 588167832}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Hollow Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,7 +1418,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638840493}
-  m_Mesh: {fileID: 4300000, guid: ae55d04c09fdf43769fc210f3ebade4f, type: 2}
+  m_Mesh: {fileID: 4300000, guid: ca2aef0924606480ea418440cf98d559, type: 2}
 --- !u!4 &638840497
 Transform:
   m_ObjectHideFlags: 0
@@ -1466,7 +1466,7 @@ GameObject:
   - component: {fileID: 639288847}
   - component: {fileID: 639288846}
   m_Layer: 0
-  m_Name: Floor (5)
+  m_Name: Boundry -Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 892673772}
   - component: {fileID: 892673771}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Boundry - Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,7 +2056,7 @@ GameObject:
   - component: {fileID: 1037911589}
   - component: {fileID: 1037911588}
   m_Layer: 0
-  m_Name: Floor (2)
+  m_Name: Boundry - Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
