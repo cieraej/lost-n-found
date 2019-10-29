@@ -23,9 +23,7 @@
         /// </summary>
         void OnCollisionEnter(Collision collision)
         {
-
             InvokeEvent();
-              
         }
     }
 }

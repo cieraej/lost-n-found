@@ -136,6 +136,10 @@ public class OVRScreenFade : MonoBehaviour
 		}
 	}
 
+    public void FadeIn()
+    {
+        StartCoroutine(Fade(1, 0));
+    }
 	/// <summary>
 	/// Cleans up the fade material
 	/// </summary>

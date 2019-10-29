@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -44,8 +45,12 @@ public class FindableActions : MonoBehaviour
 
     [SerializeField] private UnityEvent _onReturned;
 
+    public float delayBeforeDestruct = 2; 
 
+    [HideInInspector]
     public bool desired = false;
+
+    private bool found = false; 
 
     private void OnEnable()
     {
@@ -91,14 +96,24 @@ public class FindableActions : MonoBehaviour
     {
         if (desired)
         {
-            
-            _onFound.Invoke();
+            if (!found)
+            {
+                found = true;
+                _onFound.Invoke();
+            }
         }
     }
 
     public void OnReturned()
     {
         _onReturned.Invoke();
+        this.transform.parent = null;
+        StartCoroutine(WaitDelayThenDestroy());
+    }
+
+    IEnumerator WaitDelayThenDestroy()
+    {
+        yield return new WaitForSeconds(delayBeforeDestruct);
         Destroy(this.gameObject);
     }
 

@@ -23,6 +23,11 @@ public class LostAndFoundManagerEditor : Editor
         {
             myScript.StartGame(); 
         }
+
+        if (GUILayout.Button("On End Game"))
+        {
+            myScript.EndGame();
+        }
     }
 }
 #endif

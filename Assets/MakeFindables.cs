@@ -36,23 +36,28 @@ public class MakeFindables : MonoBehaviour
     {
         while (findCount != 0)
         {
+            // means it has been destroyed
             if (DesiredFindable == null)
             {
                 findCount--;
                 DesiredFindable = ToFind[findCount];
                 DesiredFindable.GetComponent<FindableActions>().OnDesired();
-            
             }
+
             yield return new WaitForEndOfFrame();
         }
+
         // everything has been found
         while (DesiredFindable != null)
         {
             yield return new WaitForEndOfFrame();
         }
-            Debug.Log("Everything has Been found");
-        _onEndGame.Invoke(); 
+
+        Debug.Log("Everything has Been found");
+
+        _onEndGame.Invoke();
         ToFind.Clear();
+        started = false;
     }
 
 
