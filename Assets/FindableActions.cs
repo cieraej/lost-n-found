@@ -18,7 +18,7 @@ public class FindableStatesEventEditor : Editor
 
         if (GUILayout.Button("On Generated"))
         {
-            myScript.OnGenerated(); 
+            myScript.OnGenerated();
         }
 
         if (GUILayout.Button("On Desired"))
@@ -33,65 +33,73 @@ public class FindableStatesEventEditor : Editor
     }
 }
 #endif
+
 public class FindableActions : MonoBehaviour
 {
     [SerializeField] private UnityEvent _onGenerated;
 
     [SerializeField] private UnityEvent _onDesired;
-    
-    [SerializeField] private UnityEvent _onFound;
-    
-    [SerializeField] private UnityEvent _onReturned;
 
-    [SerializeField]
-    private AnimateTransformToLocalVector _matchTransform;
+    [SerializeField] private UnityEvent _onFound;
+
+    [SerializeField] private UnityEvent _onReturned;
 
 
     public bool desired = false;
-   private void OnEnable()
-    {
-        OnGenerated(); 
-    }
 
-    public Collider[] ToCollide;
+    private void OnEnable()
+    {
+        OnGenerated();
+    }
 
     /// <summary>
     /// Plays the collision event
     /// </summary>
     void OnCollisionEnter(Collision collision)
     {
-        for (int i = 0; i < ToCollide.Length; i++)
+        if (desired)
         {
-            if (collision.collider == ToCollide[i])
+            Debug.Log("Collided with " + collision.transform.gameObject);
+
+            if (collision.transform.CompareTag("hand"))
             {
+                // collided with hand
                 this.transform.parent = collision.transform;
-                OnFound(); 
+                OnFound();
+            }
+
+            else if (collision.transform.CompareTag("base"))
+            {
+                // destroy the findable
+                OnReturned();
             }
         }
     }
 
     public void OnGenerated()
     {
-        _onGenerated.Invoke(); 
+        _onGenerated.Invoke();
     }
 
     public void OnDesired()
     {
         desired = true;
-        _onDesired.Invoke(); 
+        _onDesired.Invoke();
     }
 
     public void OnFound()
     {
         if (desired)
         {
+            
             _onFound.Invoke();
         }
     }
 
     public void OnReturned()
     {
-        _onReturned.Invoke(); 
+        _onReturned.Invoke();
+        Destroy(this.gameObject);
     }
 
 }
