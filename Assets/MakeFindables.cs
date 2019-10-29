@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MakeFindables : MonoBehaviour
 {
@@ -19,34 +20,38 @@ public class MakeFindables : MonoBehaviour
     public int findCount;
     private int prevFindCount = 0;
     bool started = false;
+    [SerializeField] private UnityEvent _onEndGame;
+
     public void StartGame()
     {
         if (!started)
         {
             started = true;
             DesiredFindable.GetComponent<FindableActions>().OnDesired();
-            StartCoroutine(WaitAndPrint());
+            StartCoroutine(Finding());
         }
     }
 
-    IEnumerator WaitAndPrint()
+    IEnumerator Finding()
     {
         while (findCount != 0)
         {
-            if (DesiredFindable == null && findCount != 0)
+            if (DesiredFindable == null)
             {
-
-
+                findCount--;
                 DesiredFindable = ToFind[findCount];
                 DesiredFindable.GetComponent<FindableActions>().OnDesired();
-                findCount--;
-
-
+            
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForEndOfFrame();
         }
-
-        Debug.Log("FOUND EVERYTHING!!");
+        // everything has been found
+        while (DesiredFindable != null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+            Debug.Log("Everything has Been found");
+        _onEndGame.Invoke(); 
         ToFind.Clear();
     }
 

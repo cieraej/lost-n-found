@@ -18,20 +18,14 @@
     [RequireComponent(typeof(Collider))]
     public class OnCollisionInvokeUnityEvent : InvokeUnityEvent
     {
-        public Collider[] ToCollide;
-
         /// <summary>
         /// Plays the collision event
         /// </summary>
         void OnCollisionEnter(Collision collision)
         {
-            for (int i = 0; i < ToCollide.Length; i++)
-            {
-                if (collision.collider == ToCollide[i])
-                {
-                    InvokeEvent();
-                }
-            }
+
+            InvokeEvent();
+              
         }
     }
 }

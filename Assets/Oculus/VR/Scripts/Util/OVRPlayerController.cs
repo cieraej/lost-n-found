@@ -257,7 +257,7 @@ public class OVRPlayerController : MonoBehaviour
 		float motorDamp = (1.0f + (Damping * SimulationRate * Time.deltaTime));
 
 		MoveThrottle.x /= motorDamp;
-		MoveThrottle.y = (MoveThrottle.y > 0.0f) ? (MoveThrottle.y / motorDamp) : MoveThrottle.y;
+        MoveThrottle.y /= motorDamp; //(MoveThrottle.y > 0.0f) ? (MoveThrottle.y / motorDamp) : MoveThrottle.y;
 		MoveThrottle.z /= motorDamp;
 
 		moveDirection += MoveThrottle * SimulationRate * Time.deltaTime;
@@ -274,7 +274,7 @@ public class OVRPlayerController : MonoBehaviour
 		if (Controller.isGrounded && MoveThrottle.y <= transform.lossyScale.y * 0.001f)
 		{
 			// Offset correction for uneven ground
-			float bumpUpOffset = Mathf.Max(Controller.stepOffset, new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
+			float bumpUpOffset = Mathf.Max(Controller.stepOffset, new Vector3(moveDirection.x, moveDirection.y, moveDirection.z).magnitude);
 			moveDirection -= bumpUpOffset * Vector3.up;
 		}
 
