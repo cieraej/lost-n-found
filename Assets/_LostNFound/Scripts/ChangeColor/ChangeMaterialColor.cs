@@ -87,7 +87,10 @@ public class ChangeMaterialColor : MonoBehaviour
 
     public void StopLooping()
     {
-        StopCoroutine(LoopColor());
+        StopAllCoroutines(); 
+        _materialToChange.SetColor(_propertyToChange, _colorGradient.sharedGradient.Evaluate(1));
+
+       
     }
 
     private IEnumerator LoopColor()
